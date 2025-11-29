@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-  <meta charset="UTF-8">
-  <title>Testi</title>
-</head>
-<body>
-  <h1>Testi</h1>
-  <div id="testi"></div>
+const drumSamples = {
+  drum1: 'https://cdn.glitch.global/8fbd67ca-0279-4894-9122-b48c3d17bb9a/doom_drum_loop1.mp3',
+  drum2: 'https://cdn.glitch.global/8fbd67ca-0279-4894-9122-b48c3d17bb9a/doom_drum_loop2.mp3'
+};
 
-  <script>
-    const testi = document.getElementById('testi');
-    testi.innerText = 'JavaScript toimii!';
-  </script>
-</body>
-</html>
+const drums = new Tone.Players(drumSamples, () => {
+  console.log('Rumpusamplet ladattu');
+}).toDestination();

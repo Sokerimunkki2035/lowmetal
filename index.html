@@ -1,49 +1,12 @@
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-  <meta charset="UTF-8">
-  <title>Hevikitara</title>
-  <style>
-    body { font-family: sans-serif; background: #121212; color: #fff; text-align: center; padding: 20px; }
-    h1 { color: #ff4444; }
-    .fretboard { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 30px; }
-    .note-btn {
-      background: #1e1e1e; color: #fff; border: 1px solid #444;
-      padding: 12px 16px; border-radius: 4px; font-size: 16px;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .note-btn:hover { background: #333; }
-  </style>
-</head>
-<body>
-  <h1>Hevikitaran soitin</h1>
-  <p>Klikkaa sointu/nuotti – matalampia kieliä mukana.</p>
-  <div class="fretboard">
-    <button class="note-btn" data-note="A2">A2</button> <button class="note-btn" data-note="G2">G2</button> <button class="note-btn" data-note="F2">F2</button> <button class="note-btn" data-note="E2">E2</button> <button class="note-btn" data-note="D2">D2</button> <button class="note-btn" data-note="C2">C2</button> <button class="note-btn" data-note="B1">B1</button> <button class="note-btn" data-note="A1">A1</button>
-  </div>
-  <script src="https://unpkg.com/tone@latest/build/Tone.js"></script> 
-  <script>
+const synth = new Tone.FMSynth({
+  harmonicity: 1,
+  modulationIndex: 2,
+  oscillator: { type: 'square4' },
+  envelope: { attack: 0.005, decay: 0.2, sustain: 0.3, release: 1.5 },
+  modulation: { type: 'square', volume: -8 }
+}).toDestination();
 
-
-    async function initAudio() {
-      await Tone.start();
-    }
-    window.addEventListener('click', initAudio, { once: true });
-
-    const synth = new Tone.Synth({
-      oscillator: { type: 'square' },
-      envelope: { attack: 0.005, decay: 0.1, sustain: 0.4, release: 1.2 }
-    }).toDestination();
-
-    function playNote(note) {
-      synth.triggerAttackRelease(note, '4n');
-    }
-
-    document.querySelectorAll('.note-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        playNote(btn.dataset.note);
-      });
-    });
-  </script>
-</body>
-</html>
+// Luo distortion efekti
+const distortion = new Tone.Distortion(0.8).toDestination();
+// Reititä synth distortionin kautta
+synth.connect(distortion);

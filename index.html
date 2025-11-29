@@ -2,84 +2,20 @@
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
-  <title>Doom Metal Kitara + Rummut</title>
+  <title>DoomKitara + Rumpukomppi</title>
   <style>
-    body { font-family:sans-serif; background:#121212; color:#fff; text-align:center; padding:20px; }
-    .controls { margin-bottom:20px; }
-    .fretboard { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; }
-    .note-btn { background:#222; color:#fff; border:1px solid #444; padding:10px 14px; border-radius:4px; font-size:14px; cursor:pointer; }
-    .note-btn:hover { background:#333; }
+    body { font-family: sans-serif; background: #111; color: #fff; text-align: center; padding: 20px; }
+    h1 { color: #cc0000; }
+    .controls, .fretboard { margin: 20px auto; }
+    .fretboard { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .note-btn, .drum-btn, select {
+      background: #222; color: #fff; border: 1px solid #444; padding: 12px 18px;
+      font-size: 16px; border-radius: 5px; cursor: pointer;
+    }
+    .note-btn:hover, .drum-btn:hover { background: #333; }
   </style>
 </head>
 <body>
-  <h1>Doom Metal Kitara & Rummut</h1>
+  <h1>DoomKitara</h1>
   <div class="controls">
-    <label for="tuning">Valitse viritys:</label> <select id="tuning">
-      <option value="normal">
-        Normaali
-      </option>
-      <option value="dropA">
-        Drop A (A‑viritys)
-      </option>
-      <option value="dropG">
-        Drop G
-      </option>
-    </select> <button id="playDrum1">Rumpukomppi 1</button> <button id="playDrum2">Rumpukomppi 2</button>
-  </div>
-  <div class="fretboard" id="fretboard"></div>
-  <script src="https://unpkg.com/tone@latest/build/Tone.js"></script> 
-  <script>
-
-
-    async function initAudio() { await Tone.start(); }
-    window.addEventListener('click', initAudio, { once: true });
-
-    const tuningSelect = document.getElementById('tuning');
-
-    // Määrittelemme vireen nuottikartan
-    const tuningMap = {
-      normal: ['E2','A2','D3','G3','B3','E4'],
-      dropA:  ['A1','E2','A2','D3','G3','C4'],
-      dropG:  ['G1','D2','G2','C3','F3','A3']
-    };
-
-    // Luo synth + distortion–efekti
-    const synth = new Tone.FMSynth({ oscillator:{ type:'square4' }, envelope:{ attack:0.005, decay:0.2, sustain:0.3, release:1.5 } });
-    const distortion = new Tone.Distortion(0.9);
-    synth.connect(distortion).toDestination();
-
-    function rebuildFretboard() {
-      const fb = document.getElementById('fretboard');
-      fb.innerHTML = '';
-      const strings = tuningMap[tuningSelect.value];
-      strings.forEach(note => {
-        const btn = document.createElement('button');
-        btn.className = 'note-btn';
-        btn.textContent = note;
-        btn.dataset.note = note;
-        btn.onclick = () => synth.triggerAttackRelease(btn.dataset.note, '4n');
-        fb.append(btn);
-      });
-    }
-    tuningSelect.onchange = rebuildFretboard;
-
-    rebuildFretboard(); // alustus
-
-    // Drum samples: tiedostot (esim. wav/mp3) URL:lla
-    const drumSamples = {
-      drum1: 'rummat/kick_snare_loop1.mp3',
-      drum2: 'rummat/kick_snare_loop2.mp3',
-      // Lisää drum3, drum4… yhteensä 5
-    };
-    const drums = new Tone.Players(drumSamples).toDestination();
-
-    document.getElementById('playDrum1').onclick = () => {
-      drums.player('drum1').start();
-    };
-    document.getElementById('playDrum2').onclick = () => {
-      drums.player('drum2').start();
-    };
-    // Lisää napit drum3–drum5 jos haluat
-  </script>
-</body>
-</html>
+    <label for="tuning">Viritys:</label>

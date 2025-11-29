@@ -13,23 +13,24 @@
 </head>
 <body>
   <h1>Doom Metal Kitara & Rummut</h1>
-
   <div class="controls">
-    <label for="tuning">Valitse viritys: </label>
-    <select id="tuning">
-      <option value="normal">Normaali</option>
-      <option value="dropA">Drop A (A‑viritys)</option>
-      <option value="dropG">Drop G</option>
-    </select>
-    <button id="playDrum1">Rumpukomppi 1</button>
-    <button id="playDrum2">Rumpukomppi 2</button>
-    <!-- voit lisätä enemmän nappeja / looppeja -->
+    <label for="tuning">Valitse viritys:</label> <select id="tuning">
+      <option value="normal">
+        Normaali
+      </option>
+      <option value="dropA">
+        Drop A (A‑viritys)
+      </option>
+      <option value="dropG">
+        Drop G
+      </option>
+    </select> <button id="playDrum1">Rumpukomppi 1</button> <button id="playDrum2">Rumpukomppi 2</button>
   </div>
-
   <div class="fretboard" id="fretboard"></div>
-
-  <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
+  <script src="https://unpkg.com/tone@latest/build/Tone.js"></script> 
   <script>
+
+
     async function initAudio() { await Tone.start(); }
     window.addEventListener('click', initAudio, { once: true });
 

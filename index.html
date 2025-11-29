@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Hevikitara</title>
   <style>
     body { font-family: sans-serif; background: #121212; color: #fff; text-align: center; padding: 20px; }
@@ -18,20 +18,13 @@
 <body>
   <h1>Hevikitaran soitin</h1>
   <p>Klikkaa sointu/nuotti – matalampia kieliä mukana.</p>
-
   <div class="fretboard">
-    <button class="note-btn" data-note="A2">A2</button>
-    <button class="note-btn" data-note="G2">G2</button>
-    <button class="note-btn" data-note="F2">F2</button>
-    <button class="note-btn" data-note="E2">E2</button>
-    <button class="note-btn" data-note="D2">D2</button>
-    <button class="note-btn" data-note="C2">C2</button>
-    <button class="note-btn" data-note="B1">B1</button>
-    <button class="note-btn" data-note="A1">A1</button>
+    <button class="note-btn" data-note="A2">A2</button> <button class="note-btn" data-note="G2">G2</button> <button class="note-btn" data-note="F2">F2</button> <button class="note-btn" data-note="E2">E2</button> <button class="note-btn" data-note="D2">D2</button> <button class="note-btn" data-note="C2">C2</button> <button class="note-btn" data-note="B1">B1</button> <button class="note-btn" data-note="A1">A1</button>
   </div>
-
-  <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
+  <script src="https://unpkg.com/tone@latest/build/Tone.js"></script> 
   <script>
+
+
     async function initAudio() {
       await Tone.start();
     }
